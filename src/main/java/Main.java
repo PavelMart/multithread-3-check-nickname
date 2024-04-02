@@ -22,22 +22,20 @@ public class Main {
 
         threadList.add(new Thread(() -> {
             for(String text: texts) {
-                if (!checkIsSameLetters(text)) continue;
-                incrementCount(text);
+                if (checkIsSameLetters(text)) incrementCount(text);
             }
         }));
 
         threadList.add(new Thread(() -> {
             for(String text: texts) {
-                if (!checkisPalindrome(text)) continue;
-                incrementCount(text);
+                if (checkIsPalindrome(text) && !checkIsSameLetters(text)) incrementCount(text);
+                ;
             }
         }));
 
         threadList.add(new Thread(() -> {
             for(String text: texts) {
-                if (!checkLettersInAlphabeticalOrder(text)) continue;
-                incrementCount(text);
+                if (checkLettersInAlphabeticalOrder(text)) incrementCount(text);
             }
         }));
 
@@ -88,7 +86,7 @@ public class Main {
         return true;
     }
 
-    public static boolean checkisPalindrome(String word) {
+    public static boolean checkIsPalindrome(String word) {
         int i = 0, j = word.length() - 1;
         while (i < j) {
             if (word.charAt(i) != word.charAt(j)) {
