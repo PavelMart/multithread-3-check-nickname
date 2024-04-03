@@ -41,6 +41,9 @@ public class Main {
 
         for(Thread thread: threadList) {
             thread.start();
+        }
+
+        for(Thread thread: threadList) {
             thread.join();
         }
 
